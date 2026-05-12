@@ -556,6 +556,6 @@ export const servicesData = [
 export const doctorsAvatars = [
   "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=400&fit=crop&crop=face",
   "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop&crop=face",
-  "https://images.unsplash.com/photo-1594824476967-48c8b964ac31?w=400&h=400&fit=crop&crop=face",
+  "https://images.unsplash.com/photo-1758691462651-611d730c5272?w=400&h=400&fit=crop&crop=face",
   "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=400&fit=crop&crop=face",
 ];
