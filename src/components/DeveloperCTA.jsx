@@ -8,7 +8,7 @@ const DeveloperCTA = () => {
   const t = translations[lang];
 
   // Replace with actual WhatsApp number
-  const WHATSAPP_NUMBER = "966123456789";
+  const WHATSAPP_NUMBER = "966540070093";
   const WHATSAPP_MESSAGE = encodeURIComponent(
     lang === "en"
       ? "Hi! I'm interested in building a smart system for my clinic."

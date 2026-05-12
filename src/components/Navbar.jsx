@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Globe, Smile } from "lucide-react";
+import { Menu, X, Globe, Smile, Shield } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { translations } from "../data/translations";
 
-const Navbar = () => {
+const Navbar = ({ onAdminClick }) => {
   const { lang, toggleLang } = useLanguage();
   const t = translations[lang];
   const [scrolled, setScrolled] = useState(false);
@@ -45,7 +45,6 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
           <motion.a
             href="#home"
             className="flex items-center gap-2 cursor-pointer"
@@ -63,7 +62,6 @@ const Navbar = () => {
             </span>
           </motion.a>
 
-          {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
               <button
@@ -78,9 +76,19 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Controls */}
-          <div className="flex items-center gap-3">
-            {/* Language Toggle */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={onAdminClick}
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                scrolled
+                  ? "text-secondary-700 hover:bg-gray-100"
+                  : "text-white hover:bg-white/10"
+              }`}
+            >
+              <Shield className="w-4 h-4" />
+              <span className="hidden sm:inline">{t.footer.adminLogin}</span>
+            </button>
+
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -95,7 +103,6 @@ const Navbar = () => {
               {lang === "en" ? "عربي" : "EN"}
             </motion.button>
 
-            {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className={`lg:hidden p-2 rounded-lg ${
@@ -108,7 +115,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -127,6 +133,13 @@ const Navbar = () => {
                   {link.label}
                 </button>
               ))}
+              <button
+                onClick={() => { onAdminClick(); setMobileOpen(false); }}
+                className="flex items-center gap-2 w-full text-start px-4 py-3 rounded-lg text-primary-600 hover:bg-primary-50 font-medium"
+              >
+                <Shield className="w-4 h-4" />
+                {t.footer.adminLogin}
+              </button>
             </div>
           </motion.div>
         )}

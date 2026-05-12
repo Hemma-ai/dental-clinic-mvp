@@ -17,6 +17,7 @@ const Footer = () => {
             <span className="text-white font-bold">SmileCare</span>
           </div>
           <p className="text-sm text-center">{t.footer.rights}</p>
+          <div />
         </div>
       </div>
     </footer>
