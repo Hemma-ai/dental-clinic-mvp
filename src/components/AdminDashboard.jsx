@@ -1030,7 +1030,26 @@ const AdminDashboard = ({ onBack }) => {
 };
 
 const AppointmentModal = ({ isOpen, onClose, onSubmit, loading, status, formData, setFormData, title, lang, t, isEdit }) => {
-  const timeSlots = formData.date ? generateTimeSlots(new Date(formData.date + "T00:00:00")) : [];
+  const [availableSlots, setAvailableSlots] = useState([]);
+  const [slotsLoading, setSlotsLoading] = useState(false);
+
+  useEffect(() => {
+    if (formData.date && formData.doctor) {
+      setSlotsLoading(true);
+      fetchAvailableSlotsForDoctor(new Date(formData.date + "T00:00:00"), formData.doctor)
+        .then((slots) => {
+          setAvailableSlots(slots);
+          if (!slots.includes(formData.time)) {
+            setFormData((p) => ({ ...p, time: "" }));
+          }
+        })
+        .finally(() => setSlotsLoading(false));
+    } else {
+      setAvailableSlots(formData.date ? generateTimeSlots(new Date(formData.date + "T00:00:00")) : []);
+    }
+  }, [formData.date, formData.doctor]);
+
+  const timeSlots = availableSlots;
 
   return (
     <AnimatePresence>

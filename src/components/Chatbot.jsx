@@ -677,7 +677,7 @@ const Chatbot = () => {
                               ? bf.phonePlaceholder
                               : bf.otpPlaceholder
                           }
-                          maxLength={bookingStep === "enterOTP" ? 4 : selectedCountry.maxLength}
+                          maxLength={bookingStep === "enterOTP" ? 4 : bookingStep === "enterName" ? 50 : selectedCountry.maxLength}
                           className="flex-1 px-4 py-2 bg-white border border-gray-200 rounded-full text-sm focus:outline-none focus:border-primary-500"
                           onKeyDown={(e) => e.key === "Enter" && inputValue && handleTextInput()}
                         />
